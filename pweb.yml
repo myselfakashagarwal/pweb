@@ -1,0 +1,53 @@
+services:
+  pweb-dev:
+    image: nginx:latest
+    container_name: pweb-dev
+    ports:
+      - "1111:80"
+    volumes:
+      - ./develop/src/:/usr/share/nginx/html/
+    profiles:
+      - development
+      - pweb
+    restart: always
+
+  pweb-build:
+    build:
+      context: ./build
+      dockerfile: jenkinsdocker.dockerfile
+    image: pweb-build:latest
+    container_name: pweb-build
+    user: root
+    ports:
+      - "2222:8080"
+    volumes:
+      - ./develop/:/pweb/
+      - ./build/pweb.dockerfile:/pweb/pweb.dockerfile
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./build/jobs/pweb_push/:/var/jenkins_home/jobs/pweb_push
+      - ./build/jobs/pweb_build/:/var/jenkins_home/jobs/pweb_build
+    profiles:
+      - build
+      - pweb
+
+  pweb-deploy:
+    image: ghcr.io/myselfakashagarwal/pweb:latest
+    container_name: pweb-deploy
+    ports:
+      - "80:80"
+    profiles:
+      - pweb
+      - deploy
+    restart: always
+
+  pweb-update:
+    image: containrrr/watchtower
+    container_name: pweb-update
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 10 pweb-deploy
+    profiles:
+      - pweb
+      - deploy
+      - update
+    restart: always

@@ -1,0 +1,11 @@
+Model Information:
+* title:	sun and moon cube
+* source:	https://sketchfab.com/3d-models/sun-and-moon-cube-8b4367be19f84b9ca74e2da11e1863e1
+* author:	catswilleatyou (https://sketchfab.com/catswilleatyou)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "sun and moon cube" (https://sketchfab.com/3d-models/sun-and-moon-cube-8b4367be19f84b9ca74e2da11e1863e1) by catswilleatyou (https://sketchfab.com/catswilleatyou) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
