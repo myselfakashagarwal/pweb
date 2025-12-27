@@ -8,7 +8,7 @@
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Peace & Chaos</title>
     <link href="style.css?v=1" rel="stylesheet" />
     <link rel="icon"
@@ -33,6 +33,15 @@
             <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
             <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
             <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+            <li class="nav-item mobile-only">
+                <a href="#connect" class="nav-link nav-icon-link">
+                    <svg class="nav-icon filled-icon" viewBox="0 0 24 24" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h5v-2h-5c-4.34 0-8-3.66-8-8s3.66-8 8-8 8 3.66 8 8v1.43c0 .79-.71 1.57-1.5 1.57s-1.5-.78-1.5-1.57V12c0-2.76-2.24-5-5-5s-5 2.24-5 5 2.24 5 5 5c1.38 0 2.64-.56 3.54-1.47.65.89 1.77 1.47 2.96 1.47 1.97 0 3.5-1.6 3.5-3.57V12c0-5.52-4.48-10-10-10zm0 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+                    </svg>
+                </a>
+            </li>
         </ul>
         <ul class="nav-icons">
             <li class="nav-item">
@@ -84,12 +93,13 @@
             <h2 class="section-heading">About</h2>
             <div class="about-content">
                 <p class="about-text">
-                    I'm a creative developer with a passion for building intuitive and aesthetic digital experiences.
-                    Specializing in modern web technologies, 3D graphics, and interactive design.
+                    Hi, I am Akash Agarwal; I work on streamlining operations and building reliable systems that reduce
+                    manual effort. My experience includes improving workflows, automating repetitive tasks, developing
+                    services and creating solutions that help teams work more efficiently. I focus on getting things
+                    done.
                 </p>
                 <p class="about-text">
-                    Currently focused on exploring the intersection of art, technology, and user experience.
-                    Always learning, always creating.
+                    #simplicity
                 </p>
             </div>
         </div>
@@ -135,24 +145,22 @@
             <div class="skills-content">
                 <p class="about-text">
                     Throughout my journey I have learned a lot of technologies and have worked in different domains,
-                    acquiring a dynamic skillset to get the work done in areas including DevOps, Web, CI/CD, and
-                    Monitoring.
+                    acquiring a dynamic skillset to get the work done in areas including:
                 </p>
                 <div class="skills-grid">
-                    <span class="skill-badge">Git</span>
-                    <span class="skill-badge">Linux</span>
-                    <span class="skill-badge">Shell Scripting</span>
-                    <span class="skill-badge">JavaScript</span>
-                    <span class="skill-badge">Node.js</span>
-                    <span class="skill-badge">Express.js</span>
-                    <span class="skill-badge">Docker</span>
-                    <span class="skill-badge">Jenkins</span>
-                    <span class="skill-badge">Prometheus</span>
-                    <span class="skill-badge">Grafana</span>
-                    <span class="skill-badge">Kubernetes</span>
-                    <span class="skill-badge">MySQL</span>
-                    <span class="skill-badge">Python</span>
-                    <span class="skill-badge">Java</span>
+
+                    <span class="skill-badge">Web design</span>
+                    <span class="skill-badge">Spring Ecosystem</span>
+                    <span class="skill-badge">Microservices</span>
+                    <span class="skill-badge">Continuous Integration</span>
+                    <span class="skill-badge">Continuous Deployment</span>
+                    <span class="skill-badge">Containerisation</span>
+                    <span class="skill-badge">Container Orchestration</span>
+                    <span class="skill-badge">Observability</span>
+                    <span class="skill-badge">Cloud</span>
+                    <span class="skill-badge">Automation</span>
+                    <span class="skill-badge">Databases</span>
+                    <span class="skill-badge">Programming</span>
                 </div>
             </div>
         </div>
@@ -173,7 +181,23 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-description">A monitoring solution for alerts visualisation based on SLI.</p>
+                    <p class="project-description">A containerised cicd pipeline for building and deploying web
+                        applications.</p>
+                </div>
+
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3 class="project-title">MONC</h3>
+                        <a href="https://github.com/myselfakashagarwal/monc" target="_blank" class="project-link">
+                            <svg class="project-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 7h10v10" stroke="currentColor" stroke-width="2" fill="none" />
+                                <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="project-description">An observability solution for monitoring endpoints, servers and
+                        databases. Operated with customised cli</p>
                 </div>
 
                 <div class="project-item">
@@ -200,7 +224,8 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-description">A TUI - CLI for managing & handling Docker storage objects.</p>
+                    <p class="project-description">A TUI - CLI for managing & handling Docker storage objects and for
+                        performing operations: backup, transfers, snapshots, and debugging with ease</p>
                 </div>
 
                 <div class="project-item">
@@ -213,7 +238,8 @@
                             </svg>
                         </a>
                     </div>
-                    <p class="project-description">A containerised console based text editor with its own CLI.</p>
+                    <p class="project-description">A containerised console based text editor with its own CLI to
+                        configure config files with ease.</p>
                 </div>
             </div>
         </div>

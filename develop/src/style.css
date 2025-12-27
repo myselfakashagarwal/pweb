@@ -28,6 +28,7 @@ body {
     color: #000000;
     overflow-x: hidden;
     margin: 0;
+    min-height: 100dvh;
 }
 
 /* Navigation Bar */
@@ -136,16 +137,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: 0 !important;
     width: 40px;
-    /* Uniform width */
     height: 40px;
-    /* Uniform height */
     background-color: #ffffff;
     border-radius: 50%;
     /* Circle */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     /* Subtle shadow for depth */
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
 }
 
 /* Remove underline animation from icon links */
@@ -165,6 +166,7 @@ canvas.webgl {
     outline: none;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     z-index: -1 !important;
     /* Force behind everything */
 }
@@ -176,6 +178,7 @@ canvas.webgl {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     z-index: 0;
     /* Removed pointer-events: none to allow 3D canvas interaction */
 }
@@ -209,6 +212,7 @@ canvas.webgl {
 .content-section {
     position: relative;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -450,6 +454,17 @@ canvas.webgl {
     font-style: italic;
 }
 
+/* Mobile Only Utility */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+}
+
 /* Skills Section */
 .skills-content {
     display: flex;
@@ -540,6 +555,7 @@ canvas.webgl {
         text-decoration: none;
         transition: all 0.3s ease;
         border: 1px solid transparent;
+        flex-shrink: 0;
     }
 
     .connect-link:hover {
@@ -562,6 +578,17 @@ canvas.webgl {
         color: #1a1a1a;
     }
 
+    /* Mobile Only Spacing Fixes */
+    .content-section,
+    .connect-section {
+        align-items: flex-start;
+        /* Force content to start from top, not center */
+        scroll-margin-top: 20px;
+        /* Adjusted to balance with padding */
+        padding-top: 80px;
+        /* Visual breathing room from navbar */
+    }
+
     /* Mobile Navigation Adjustments */
     .nav-bar {
         padding: 8px 12px;
@@ -569,22 +596,62 @@ canvas.webgl {
         max-width: none;
         gap: 0;
         justify-content: space-between;
+        align-items: center;
+        /* Ensure vertical center */
     }
 
     .nav-links {
-        gap: 8px;
+        gap: 0;
+        /* Let justify-content handle spacing */
         flex: 1;
         justify-content: space-evenly;
+        /* Even horizontal spacing */
+        align-items: center;
+        /* Vertical center */
+        margin: 0 10px;
+        /* Small buffer from logo/edges */
+        padding: 0;
+        width: 100%;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        /* Center content within item */
+        height: 100%;
     }
 
     .nav-link {
         font-size: 12px;
         letter-spacing: -0.01em;
+        line-height: 1;
+        padding: 6px 0;
+    }
+
+    /* Mobile Connect Link - Simple Icon Style */
+    .mobile-connect-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        height: auto;
+    }
+
+    .mobile-connect-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .mobile-connect-link::after {
+        content: none;
     }
 
     .nav-icon-link {
         width: 32px;
         height: 32px;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        padding: 0 !important;
     }
 
     .nav-icon {
@@ -634,6 +701,9 @@ canvas.webgl {
     .nav-icon-link {
         width: 28px;
         height: 28px;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+        padding: 0 !important;
     }
 
     .nav-icon {
