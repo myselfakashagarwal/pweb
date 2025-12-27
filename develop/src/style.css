@@ -212,7 +212,7 @@ canvas.webgl {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 20px;
+    padding: 50px 20px 80px;
     background-color: rgba(253, 251, 247, 0.95);
     z-index: 2;
 }
@@ -450,6 +450,43 @@ canvas.webgl {
     font-style: italic;
 }
 
+/* Skills Section */
+.skills-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: flex-start;
+}
+
+.skill-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    background-color: rgb(242, 243, 235);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    background-color: rgba(228, 237, 145, 0.2);
+    border-color: rgba(228, 237, 145, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Connect Section - Hidden on Desktop, Shown on Mobile */
+.connect-section {
+    display: none;
+}
+
 /* Responsiveness */
 @media (max-width: 1024px) {
 
@@ -470,8 +507,97 @@ canvas.webgl {
 }
 
 @media (max-width: 768px) {
+
+    /* Hide social icons in nav on mobile */
+    .nav-icons {
+        display: none;
+    }
+
+    /* Show Connect section on mobile */
+    .connect-section {
+        display: flex;
+        position: relative;
+        min-height: auto;
+        padding: 40px 20px;
+        background-color: rgba(253, 251, 247, 0.95);
+        z-index: 2;
+    }
+
+    .connect-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .connect-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem;
+        background-color: rgb(242, 243, 235);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+    }
+
+    .connect-link:hover {
+        background-color: rgba(228, 237, 145, 0.2);
+        border-color: rgba(228, 237, 145, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .connect-icon {
+        width: 24px;
+        height: 24px;
+        fill: #1a1a1a;
+        flex-shrink: 0;
+    }
+
+    .connect-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #1a1a1a;
+    }
+
+    /* Mobile Navigation Adjustments */
     .nav-bar {
-        padding: 15px 20px;
+        padding: 8px 12px;
+        width: 95%;
+        max-width: none;
+        gap: 0;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        gap: 8px;
+        flex: 1;
+        justify-content: space-evenly;
+    }
+
+    .nav-link {
+        font-size: 12px;
+        letter-spacing: -0.01em;
+    }
+
+    .nav-icon-link {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
+    .centered-text {
+        font-size: 5.5rem;
     }
 
     /* Mobile - Stack vertically */
@@ -487,5 +613,61 @@ canvas.webgl {
     .project-item:nth-child(5) {
         grid-column: span 1;
         grid-row: span 1;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .nav-bar {
+        padding: 6px 10px;
+        width: 98%;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .nav-icon-link {
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .centered-text {
+        font-size: 8rem;
+    }
+
+    .section-heading {
+        font-size: 1.75rem;
+    }
+
+    .about-text,
+    .project-description {
+        font-size: 0.95rem;
+    }
+
+    .connect-icons {
+        gap: 0.8rem;
+    }
+
+    .connect-link {
+        padding: 0.7rem;
+    }
+
+    .connect-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .connect-label {
+        font-size: 0.95rem;
     }
 }
