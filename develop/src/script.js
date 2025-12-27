@@ -123,3 +123,111 @@ const resize = () => {
 };
 
 window.addEventListener("resize", resize);
+
+// Update active navigation link based on current section
+function updateActiveNavLink() {
+  const sections = document.querySelectorAll('.content-section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const scrollY = window.scrollY;
+
+  // If we're at the top (home section), remove all active states
+  if (scrollY < window.innerHeight * 0.5) {
+    navLinks.forEach(link => link.classList.remove('active'));
+    return;
+  }
+
+  let currentSection = null;
+
+  // Find which section is currently most visible
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const sectionTop = rect.top;
+    const sectionBottom = rect.bottom;
+    const sectionMiddle = sectionTop + rect.height / 2;
+
+    // Check if section middle is in the viewport middle area
+    if (sectionMiddle > 0 && sectionMiddle < window.innerHeight) {
+      currentSection = section;
+    }
+  });
+
+  // Update active state on nav links
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (currentSection) {
+      const href = link.getAttribute('href');
+      const sectionId = currentSection.getAttribute('id');
+      if (href === `#${sectionId}`) {
+        link.classList.add('active');
+      }
+    }
+  });
+}
+
+// Fade effect for sections and centered text on scroll
+function handleScrollFade() {
+  const scrollY = window.scrollY;
+  const centerText = document.querySelector('.centered-text');
+  const sections = document.querySelectorAll('.content-section');
+
+  // Fade out centered text after scrolling starts
+  if (scrollY > 100) {
+    centerText.classList.add('fade-out');
+  } else {
+    centerText.classList.remove('fade-out');
+  }
+
+  // Fade in sections as they come into view
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    const sectionMiddle = rect.top + rect.height / 2;
+    const windowMiddle = window.innerHeight / 2;
+
+    // Section is visible when its middle is near the viewport middle
+    if (Math.abs(sectionMiddle - windowMiddle) < window.innerHeight / 2) {
+      section.classList.add('visible');
+    } else {
+      section.classList.remove('visible');
+    }
+
+    // Update nav link underline based on section scroll progress
+    updateNavLinkProgress(section);
+  });
+
+  // Update active nav link
+  updateActiveNavLink();
+}
+
+// Update nav link underline width based on section visibility progress
+function updateNavLinkProgress(section) {
+  const sectionId = section.getAttribute('id');
+  if (!sectionId) return;
+
+  // Find the corresponding nav link
+  const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+  if (!navLink) return;
+
+  const rect = section.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // Calculate how much of the section is visible
+  let visiblePercent = 0;
+
+  if (rect.top < windowHeight && rect.bottom > 0) {
+    // Section is at least partially visible
+    const sectionHeight = rect.height;
+    const visibleTop = Math.max(0, -rect.top);
+    const visibleBottom = Math.min(sectionHeight, windowHeight - rect.top);
+    const visibleHeight = visibleBottom - visibleTop;
+
+    visiblePercent = Math.max(0, Math.min(100, (visibleHeight / windowHeight) * 100));
+  }
+
+  // Set the underline width as a CSS custom property on the nav link
+  navLink.style.setProperty('--progress', `${visiblePercent}%`);
+}
+
+// Add scroll listener
+window.addEventListener('scroll', handleScrollFade);
+// Initial check
+handleScrollFade();
