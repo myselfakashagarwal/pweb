@@ -3,16 +3,23 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Constants
 const sizes = {
-  width: window.innerWidth * 1,
-  height: window.innerHeight * 1,
+  width: window.innerWidth,
+  height: window.innerHeight,
 };
-var deviceType;
-if (device.mobile()) {
-  deviceType = "mobile";
-} else if (device.desktop()) {
-  deviceType = "desktop";
+
+// Check device type (with safe fallback)
+var deviceType = "desktop";
+if (typeof device !== 'undefined') {
+  if (device.mobile()) {
+    deviceType = "mobile";
+  } else if (device.tablet()) {
+    deviceType = "tablet";
+  }
 } else {
-  deviceType = "tablet";
+  // Fallback if device library isn't ready
+  if (window.innerWidth <= 768) {
+    deviceType = "mobile";
+  }
 }
 
 // Scene
@@ -46,8 +53,18 @@ gltf_loader.load(
   "./static/model/scene.gltf",
   (gltf) => {
     model = gltf.scene;
-    model.scale.set(4, 4, 4);
-    model.position.set(0, -6, 0);
+    // Adjust model scale and position based on device type
+    if (deviceType === "mobile") {
+      model.scale.set(2.5, 2.5, 2.5);
+      model.position.set(0, -4, 0);
+    } else if (deviceType === "tablet") {
+      model.scale.set(3, 3, 3);
+      model.position.set(0, -5, 0);
+    } else {
+      model.scale.set(4, 4, 4);
+      model.position.set(0, -6, 0);
+    }
+
     //scene.add(model);
     model.rotation.y = Math.PI + 0.5;
 
@@ -69,7 +86,7 @@ gltf_loader.load(
 );
 
 // Ambient light
-const light = new THREE.AmbientLight("#ffffff", 0.5);
+const light = new THREE.AmbientLight("#2596be", 0.5);
 scene.add(light);
 
 // Environment cube
@@ -88,9 +105,9 @@ scene.add(environmentCube);
 
 
 // Renderer
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.max(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // Render and animate
 const clock = new THREE.Clock();
